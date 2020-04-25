@@ -1,6 +1,7 @@
 {
   "name": "webtech2vue",
   "version": "0.1.0",
+  "main": "server.js",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,8 +9,15 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
     "core-js": "^3.6.4",
-    "vue": "^2.6.11"
+    "express": "^4.17.1",
+    "mongodb": "^3.5.5",
+    "multer": "^1.4.2",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
