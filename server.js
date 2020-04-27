@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser())
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/dist')));
+app.use(express.static(path.join(__dirname, '/public')));
 app.use('/resources', express.static(__dirname + '/resources'));
 
 var storage = multer.diskStorage({
