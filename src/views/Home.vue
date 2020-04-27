@@ -1,8 +1,7 @@
 <template>
     <div class="landing">
         <div class="landing-content">
-            <p>OOF oof EEEEE EEEE OOF OOF EE</p>
-            <p>Almost before we knew it, we had left the ground.</p>
+            <p>Record Archive</p>
         </div>
     </div>
 </template>
@@ -17,7 +16,7 @@ export default {
     background: url('https://cdn.discordapp.com/attachments/500381920736051201/700439761818484777/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 56px);
 }
 .landing-content {
     position: absolute;

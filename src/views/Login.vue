@@ -1,6 +1,9 @@
 <template>
     <div>
     <div class="row container">
+        <div class="col-12">
+            <p class="alert alert-danger" v-bind:class='{hide: !failed}'>Failed</p>
+        </div>
        <div id="loginForm" class="col-6">
            <h1>Login</h1>
            <form @submit="login">
@@ -52,31 +55,44 @@ export default {
             loginForm : {
                 username: '',
                 passw: '',
-            }
+            },
+            failed: false
         }
     },
     methods: {
         login(){
             console.log(this.loginForm.username);
-            axios.post('/login', {
+            axios.post('/api/login', {
                 username: this.loginForm.username,
                 password: this.loginForm.passw,
             }).then(response => {
                 console.log(response);
                 window.location = "/";
-            });
+            }).catch(err => {
+                console.log(err);
+                this.failed = true;
+                setTimeout(() => {
+                    this.failed = false;
+                }, 3000);
+            })
             this.loginForm = {};
         },
         register(){
             event.preventDefault();
             console.log(this.regForm);
-            axios.post('/register', {
+            axios.post('/api/register', {
                 username: this.regForm.username,
                 password: this.regForm.passw,
                 email: this.regForm.email
             }).then(response => {
                 console.log(response);
                 window.location = "/";
+            }).catch(err => {
+                console.log(err);
+                this.failed = true;
+                setTimeout(() => {
+                    this.failed = false;
+                }, 3000);
             });
             this.regForm = {};
         }
@@ -85,11 +101,22 @@ export default {
 </script>
 
 <style>
-    .row {
-        margin: auto;
-        margin-top: 60px;
-    }
-    #loginForm {
-        border-right: 1px solid rgba(0, 0, 0, 0.5);
-    }
+.alert {
+    text-align: center;
+    position: fixed;
+    z-index: 999;
+    width: 80vw;
+    top: 70px;
+    left: 10vw;
+}
+.row {
+    margin: auto;
+    margin-top: 60px;
+}
+#loginForm {
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+}
+.hide {
+    display: none;
+}
 </style>

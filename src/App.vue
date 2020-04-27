@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container-fluid">
-    <Header v-bind:loggedIn="this.logged" />
-    <router-view></router-view>
+    <Header v-bind:loggedIn="this.logged"/>
+    <router-view :username="user" ></router-view>
   </div>
 </template>
 
@@ -14,29 +14,34 @@ export default {
     Header
   },
   data(){
-    return { logged: false };
+    return { logged: false,
+             user: '' };
   },
   created(){
-    var res = "";
-    let name = "session=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
       }
-      if (c.indexOf(name) == 0) {
-        res = c.substring(name.length, c.length);
-      }
+      return "";
     }
-    this.logged = res !== "";
+    this.logged = getCookie('session') !== "";
+    this.user = getCookie('user');
   }
 }
 
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 html, body {
   background-color: #fff;
   box-sizing: border-box;
