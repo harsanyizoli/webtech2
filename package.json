@@ -4,6 +4,7 @@
   "main": "server.js",
   "private": true,
   "scripts": {
+    "run": "node .",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
